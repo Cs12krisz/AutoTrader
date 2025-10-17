@@ -1,4 +1,6 @@
 
+using AutoTrader.Models;
+
 namespace AutoTrader
 {
     public class Program
@@ -7,6 +9,7 @@ namespace AutoTrader
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDbContext<CarDbContext>();
             // Add services to the container.
 
             builder.Services.AddControllers();
