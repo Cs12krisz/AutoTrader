@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "ContainingType": "AutoTrader.Controllers.CarsController",
+    "Method": "GetAllRecord",
+    "RelativePath": "api/Cars",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "AutoTrader.Models.Car",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
