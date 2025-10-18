@@ -51,5 +51,35 @@ namespace AutoTrader.Controllers
                 }
             }
         }
+
+        [HttpGet("GetById")]
+        public ActionResult<Car> GetRecordById(int id)
+        {
+            using (CarDbContext context = new CarDbContext())
+            {
+                var car = context.Cars.FirstOrDefault(car => car.Id == id);
+
+                if (car != null)
+                {
+                    return Ok(new {message = "Sikeres lekérdezés", result = car});
+                }
+                else
+                {
+                    return NotFound(new { message = "Nincs ilyen id!!!" });
+                }
+
+            }
+
+        }
+        [HttpDelete]
+        public ActionResult<Car> DeleteARecordById(int id)
+        {
+
+            using (CarDbContext context = new CarDbContext())
+            {
+                return Ok(new { message = "Sikeres törlés" });
+            }
+        }
+
     }
 }
