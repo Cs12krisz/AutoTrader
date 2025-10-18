@@ -1,4 +1,5 @@
 ﻿using AutoTrader.Models;
+using AutoTrader.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoTrader.Controllers
@@ -90,6 +91,30 @@ namespace AutoTrader.Controllers
                     return NotFound(new { message = "Nincs ilyen id!!!" });
                 }
                     
+            }
+        }
+
+        [HttpPut]
+        public ActionResult PutARecord(int id, UpdateCarDto updateCarDto) 
+        {
+            using (var context = new CarDbContext()) 
+            {
+                var existingCar = context.Cars.FirstOrDefault(car => car.Id == id);
+
+                if (existingCar != null)
+                {
+                    existingCar.Brand = updateCarDto.Brand;
+                    existingCar.Type = updateCarDto.Type;
+                    existingCar.Color = updateCarDto.Color;
+                    existingCar.Year = updateCarDto.Year;
+
+                    context.Cars.Update(existingCar);
+                    context.SaveChanges();
+
+                    return Ok(new {message = "Sikeres frissítés"});
+                }
+
+                return NotFound(new { message = "Nincs ilyen id!!!"});
             }
         }
 
