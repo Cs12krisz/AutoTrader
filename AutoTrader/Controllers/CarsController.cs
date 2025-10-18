@@ -71,13 +71,25 @@ namespace AutoTrader.Controllers
             }
 
         }
+
         [HttpDelete]
         public ActionResult<Car> DeleteARecordById(int id)
         {
 
             using (CarDbContext context = new CarDbContext())
             {
-                return Ok(new { message = "Sikeres törlés" });
+                var car = context.Cars.FirstOrDefault(car => car.Id == id);
+                if (car != null) 
+                {
+                    context.Cars.Remove(car);
+                    context.SaveChanges();
+                    return Ok(new { message = "Sikeres törlés" });
+                }
+                else
+                {
+                    return NotFound(new { message = "Nincs ilyen id!!!" });
+                }
+                    
             }
         }
 
