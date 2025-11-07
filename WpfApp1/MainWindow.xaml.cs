@@ -27,10 +27,10 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-
+            LoadDataAsync();
         }
 
-        public async Task LoadData()
+        public async Task LoadDataAsync()
         {
             try
             {
@@ -39,7 +39,9 @@ namespace WpfApp1
 
                 var json = await response.Content.ReadAsStringAsync();
 
-                var data = JsonSerializer.Deserialize(JsonDocument.Parse(json));
+                var data = JsonSerializer.Deserialize<List<CarDto>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+                table.ItemsSource = data;
             }
             catch (Exception)
             {
