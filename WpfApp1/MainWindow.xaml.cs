@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,9 +22,30 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly HttpClient _httpClient = new HttpClient();
+        private const string ApiURL = "https://localhost:7227/api/Cars";
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+        public async Task LoadData()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync(ApiURL);
+                response.EnsureSuccessStatusCode();
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var data = JsonSerializer.Deserialize(JsonDocument.Parse(json));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
