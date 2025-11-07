@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="90,0,211,0">
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+    <Grid>
+        <DataGrid 
+            x:Name="table"
+            Margin="80"
+            d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
     </Grid>
 </Window>
