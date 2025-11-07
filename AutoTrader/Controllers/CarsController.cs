@@ -93,7 +93,7 @@ namespace AutoTrader.Controllers
         }
 
         [HttpPut]
-        public ActionResult PutARecord(int id, UpdateCarDto updateCarDto) 
+        public ActionResult<Car> PutARecord(int id, UpdateCarDto updateCarDto) 
         {
             using (CarDbContext context = new CarDbContext()) 
             {
@@ -108,7 +108,7 @@ namespace AutoTrader.Controllers
 
                     context.Cars.Update(existingCar);
                     context.SaveChanges();
-                    return Ok(new {message = "Sikeres frissítés"});
+                    return Ok(new {message = "Sikeres frissítés", result = existingCar});
                 }
 
                 return NotFound(new { message = "Nincs ilyen id!!!"});
