@@ -41,17 +41,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Car"
+                "$ref": "#/components/schemas/UpdateCarDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Car"
+                "$ref": "#/components/schemas/UpdateCarDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Car"
+                "$ref": "#/components/schemas/UpdateCarDto"
               }
             }
           }

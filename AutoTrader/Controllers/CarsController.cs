@@ -13,7 +13,7 @@ namespace AutoTrader.Controllers
         {
             using (CarDbContext context = new CarDbContext())
             {
-                var cars = context.Cars.ToList();
+                var cars = context.Cars.ToArray();
 
                 if (cars != null)
                 {
@@ -26,7 +26,7 @@ namespace AutoTrader.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Car> AddNewRecord(Car car)
+        public ActionResult<Car> AddNewRecord(UpdateCarDto car)
         {
             using (CarDbContext context = new CarDbContext())
             {
@@ -45,11 +45,10 @@ namespace AutoTrader.Controllers
                     //return Ok(newCar);
                     return StatusCode(201, newCar);
                 }
-                else
-                {
-                    return BadRequest(new { message = "Sikertelen feltöltés" });
+                
+                return BadRequest(new { message = "Sikertelen feltöltés" });
 
-                }
+                
             }
         }
 
@@ -62,12 +61,11 @@ namespace AutoTrader.Controllers
 
                 if (car != null)
                 {
-                    return Ok(new {message = "Sikeres lekérdezés", result = car});
+                    return Ok(new {message = "Sikeres találat", result = car});
                 }
-                else
-                {
-                    return NotFound(new { message = "Nincs ilyen id!!!" });
-                }
+                                
+                return NotFound(new { message = "Nincs ilyen id!!!", result = car });
+                
 
             }
 
@@ -86,10 +84,10 @@ namespace AutoTrader.Controllers
                     context.SaveChanges();
                     return Ok(new { message = "Sikeres törlés" });
                 }
-                else
-                {
-                    return NotFound(new { message = "Nincs ilyen id!!!" });
-                }
+                
+                
+                return NotFound(new { message = "Nincs ilyen id!!!" });
+                
                     
             }
         }
@@ -97,7 +95,7 @@ namespace AutoTrader.Controllers
         [HttpPut]
         public ActionResult PutARecord(int id, UpdateCarDto updateCarDto) 
         {
-            using (var context = new CarDbContext()) 
+            using (CarDbContext context = new CarDbContext()) 
             {
                 var existingCar = context.Cars.FirstOrDefault(car => car.Id == id);
 
@@ -110,7 +108,6 @@ namespace AutoTrader.Controllers
 
                     context.Cars.Update(existingCar);
                     context.SaveChanges();
-
                     return Ok(new {message = "Sikeres frissítés"});
                 }
 

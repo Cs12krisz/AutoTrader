@@ -29,7 +29,7 @@
     "Parameters": [
       {
         "Name": "car",
-        "Type": "AutoTrader.Models.Car",
+        "Type": "AutoTrader.Models.Dtos.UpdateCarDto",
         "IsRequired": true
       }
     ],
