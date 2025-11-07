@@ -72,7 +72,10 @@ namespace WpfApp1
 
         private void table_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (table.SelectedItem is CarDto selected)
+            {
+                MessageBox.Show(selected.Id.ToString());
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
