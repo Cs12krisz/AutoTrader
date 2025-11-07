@@ -13,5 +13,10 @@ namespace WpfApp1
         public string Type { get; set; }
         public string Color { get; set; }
         public DateTime Year { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id : {Id}";
+        }
     }
 }

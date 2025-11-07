@@ -23,7 +23,9 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         private readonly HttpClient _httpClient = new HttpClient();
-        private const string ApiURL = "https://localhost:7227/api/Cars";
+        private const string apiURL = "https://localhost:7227/api/Cars";
+        private int selectedID = -1;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,7 +36,7 @@ namespace WpfApp1
         {
             try
             {
-                var response = await _httpClient.GetAsync(ApiURL);
+                var response = await _httpClient.GetAsync(apiURL);
                 response.EnsureSuccessStatusCode();
 
                 var json = await response.Content.ReadAsStringAsync();
@@ -45,9 +47,37 @@ namespace WpfApp1
             }
             catch (Exception)
             {
-
                 throw;
             }
+        }
+
+        public async Task DeleteDataAsync()
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"{apiURL}?id={txbId.Text}");
+                response.EnsureSuccessStatusCode();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    await LoadDataAsync();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void table_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteDataAsync();
         }
     }
 }

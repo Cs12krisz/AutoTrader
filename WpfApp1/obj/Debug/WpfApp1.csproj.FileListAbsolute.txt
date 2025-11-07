@@ -34,3 +34,4 @@ C:\Users\CsKrisz\source\repos\AutoTrader\WpfApp1\obj\Debug\WpfApp1.csproj.CoreCo
 C:\Users\CsKrisz\source\repos\AutoTrader\WpfApp1\obj\Debug\WpfApp1.csproj.Up2Date
 C:\Users\CsKrisz\source\repos\AutoTrader\WpfApp1\obj\Debug\WpfApp1.exe
 C:\Users\CsKrisz\source\repos\AutoTrader\WpfApp1\obj\Debug\WpfApp1.pdb
+C:\Users\CsKrisz\source\repos\AutoTrader\WpfApp1\obj\Debug\WpfApp1.exe.config

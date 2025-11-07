@@ -10,7 +10,9 @@
         <DataGrid 
             x:Name="table"
             Margin="80"
-            d:ItemsSource="{d:SampleData ItemCount=5}"/>
+            d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="table_SelectionChanged"/>
+        <Button Content="Rekord törlése" HorizontalAlignment="Left" Margin="179,24,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <TextBox x:Name="txbId" HorizontalAlignment="Left" Margin="54,25,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
